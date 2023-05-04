@@ -1,52 +1,53 @@
 <template>
-
   <v-app>
-
-    
-    <v-bottom-navigation color="teal" grow>
-      <v-btn>
+    <component :is="this.$vuetify.display.mobile ? 'v-bottom-navigation' : 'v-app-bar'"
+               :grow="this.$vuetify.display.mobile ? true : false">      
+      <v-btn :to="diet.path">
         <v-icon>mdi-food-drumstick</v-icon>
-
-         <v-router-link to="/about">
-          재료 계산
-        </v-router-link>
-
+        {{ diet.name }}
       </v-btn>
 
-      <v-btn>
-        <v-icon>mdi-message-alert</v-icon>
-
-        추천 받기
-      </v-btn>
-
-      <v-btn>
+      <v-btn :to="cart.path">
         <v-icon>mdi-basket</v-icon>
-
-        장바구니
+        {{ cart.name }}
       </v-btn>
-    </v-bottom-navigation>
 
+      <v-btn :to="setting.path">
+        <v-icon>mdi-menu</v-icon>
+        {{ setting.name }}
+      </v-btn>
+    </component>
 
+    <v-main >
+      <router-view />
+    </v-main>
 
-    <v-content>
-      <v-container> <router-view /></v-container>
-    </v-content>
-
- 
   </v-app>
 </template>
 
 
 <script>
-  export default {
-    data: () => ({
-      overlay: true,
-    }),
-    mounted() {
-      // hide the overlay when everything has loaded
-      // you could choose some other event, e.g. if you're loading
-      // data asynchronously, you could wait until that process returns
-      this.overlay = true
-    }, 
-  }
+
+
+export default {
+  data: () => ({
+      diet: {
+        name: "식단",
+        path: "/diet",
+      },
+
+      cart: {
+        name: "장바구니", 
+        path: "/cart",
+      },
+
+      setting : {
+        name: "설정",
+        path: "/setting",
+      }
+  }),
+  mounted() {
+
+  },
+}
 </script>

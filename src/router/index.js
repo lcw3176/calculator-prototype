@@ -1,12 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/CalculatorView.vue'
 
 const routes = [
   {
     path: '/',
-    alias: ['/calculator'],
-    name: 'calculator',
-    component: () => import(/* webpackChunkName: "diet" */ '../views/CalculatorView.vue')
+    alias: ['/diet'],
+    name: 'diet',
+    component: () => import(/* webpackChunkName: "diet" */ '../views/DietView.vue')
+  },
+
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/AboutView.vue')
   }
 ]
 

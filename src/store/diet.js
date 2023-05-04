@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 
 
-export const useCalculatorStore = defineStore("calculatorStore", {
+export const useDietStore = defineStore("dietStore", {
 
     state: () => ({
       foods: [],
