@@ -1,9 +1,8 @@
 <template>
   <v-app>
-    <component :is="this.$vuetify.display.mobile ? 'v-bottom-navigation' : 'v-app-bar'"
-               :grow="this.$vuetify.display.mobile ? true : false">      
+    <v-bottom-navigation grow color="primary">
       <v-btn :to="diet.path">
-        <v-icon>mdi-food-drumstick</v-icon>
+        <v-icon>mdi-home</v-icon>
         {{ diet.name }}
       </v-btn>
 
@@ -16,9 +15,9 @@
         <v-icon>mdi-menu</v-icon>
         {{ setting.name }}
       </v-btn>
-    </component>
+    </v-bottom-navigation>
 
-    <v-main >
+    <v-main>
       <router-view />
     </v-main>
 
@@ -31,20 +30,20 @@
 
 export default {
   data: () => ({
-      diet: {
-        name: "식단",
-        path: "/diet",
-      },
+    diet: {
+      name: "홈",
+      path: "/home",
+    },
 
-      cart: {
-        name: "장바구니", 
-        path: "/cart",
-      },
+    cart: {
+      name: "장바구니",
+      path: "/cart",
+    },
 
-      setting : {
-        name: "설정",
-        path: "/setting",
-      }
+    setting: {
+      name: "설정",
+      path: "/setting",
+    }
   }),
   mounted() {
 
