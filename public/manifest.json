@@ -1,9 +1,8 @@
 {
-    "theme_color": "#000000",
-    "background_color": "#000000",
+    "theme_color": "white",
+    "background_color": "white",
     "display": "standalone",
-    "scope": "/",
-    "start_url": "/",
+    "start_url": "https://mealdeal.netlify.app/",
     "name": "meal-deal",
     "description": "\uc2dd\ub2e8 \uc7ac\ub8cc \uce21\uc815 & \uad6c\uc785",
     "short_name": "\ubc00\uac70\ub798",
