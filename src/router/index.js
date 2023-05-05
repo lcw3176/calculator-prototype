@@ -3,16 +3,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    alias: ['/diet'],
-    name: 'diet',
-    component: () => import(/* webpackChunkName: "diet" */ '../views/DietView.vue')
+    alias: ['/home'],
+    name: 'home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
   },
 
   {
     path: '/cart',
     name: 'cart',
     component: () => import(/* webpackChunkName: "cart" */ '../views/CartView.vue')
-  }
+  },
+
+  
 ]
 
 const router = createRouter({
