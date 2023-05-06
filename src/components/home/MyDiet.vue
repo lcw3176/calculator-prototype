@@ -19,20 +19,19 @@
                                 목적에 맞는 다양한 식단 추천, 재료 구매까지 한번에
                             </v-card-subtitle>
 
-                            <v-card-actions>
-                                <v-btn class="ms-2" variant="outlined" size="small">
+                             <v-card-actions>
+                                <v-btn class="ma-2" variant="outlined">
                                     벌크업
                                 </v-btn>
 
-                                <v-btn class="ms-2" variant="outlined" size="small">
+                                <v-btn class="ma-2" variant="outlined">
                                     다이어트
                                 </v-btn>
 
-                                <v-btn class="ms-2" variant="outlined" size="small">
+                                <v-btn class="ma-2" variant="outlined">
                                     유지, 건강
                                 </v-btn>
                             </v-card-actions>
-
                         </v-card>
                     </v-col>
 
@@ -47,11 +46,11 @@
                                     <v-card-subtitle>나만의 식단 or 모두의 식단</v-card-subtitle>
 
                                     <v-card-actions>
-                                        <v-btn class="ms-2" variant="outlined" size="small">
+                                        <v-btn class="ma-2" variant="outlined">
                                             개인
                                         </v-btn>
 
-                                        <v-btn class="ms-2" variant="outlined" size="small">
+                                        <v-btn class="ma-2" variant="outlined">
                                             커뮤니티
                                         </v-btn>
                                     </v-card-actions>
