@@ -1,66 +1,33 @@
 <template>
     <v-container fluid>
 
-        <v-card class="mx-auto">
-            <v-card-title class="text-h5">
-                식단
-            </v-card-title>
 
-            <v-container>
+        <v-row dense>
+            <v-col cols="12">
+                <v-card>
+                    <v-card-title class="text-h5">
+                        내 식단
+                    </v-card-title>
 
-                <v-row dense>
-                    <v-col cols="12">
-                        <v-card color="blue-grey-darken-2" theme="dark">
-                            <v-card-title class="text-h5">
-                                추천받기
-                            </v-card-title>
+                    <v-card-subtitle>
+                        식단에 맞는 재료 추천, 기간 계산, 구매까지 한번에
+                    </v-card-subtitle>
+                    <v-list>
 
-                            <v-card-subtitle>
-                                목적에 맞는 다양한 식단 추천, 재료 구매까지 한번에
-                            </v-card-subtitle>
+                        <v-list-item v-for="(item, i) in items" :key="i" :value="item" active-color="primary">
+                            <template v-slot:prepend>
+                                <v-icon :icon="item.icon"></v-icon>
+                            </template>
 
-                             <v-card-actions>
-                                <v-btn class="ma-2" variant="outlined">
-                                    벌크업
-                                </v-btn>
+                            <v-list-item-title v-text="item.text"></v-list-item-title>
+                        </v-list-item>
+                    </v-list>
 
-                                <v-btn class="ma-2" variant="outlined">
-                                    다이어트
-                                </v-btn>
 
-                                <v-btn class="ma-2" variant="outlined">
-                                    유지, 건강
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-col>
+                </v-card>
+            </v-col>
 
-                    <v-col cols="12">
-                        <v-card color="#1F7087" theme="dark">
-                            <div class="d-flex flex-no-wrap justify-space-between">
-                                <div>
-                                    <v-card-title class="text-h5">
-                                        등록하기
-                                    </v-card-title>
-
-                                    <v-card-subtitle>나만의 식단 or 모두의 식단</v-card-subtitle>
-
-                                    <v-card-actions>
-                                        <v-btn class="ma-2" variant="outlined">
-                                            개인
-                                        </v-btn>
-
-                                        <v-btn class="ma-2" variant="outlined">
-                                            커뮤니티
-                                        </v-btn>
-                                    </v-card-actions>
-                                </div>
-                            </div>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </v-card>
+        </v-row>
     </v-container>
 </template>
 
@@ -68,7 +35,10 @@
 
 export default {
     data: () => ({
-
+        items: [
+            { text: '식단 추가', icon: 'mdi-playlist-plus' },
+            { text: '목록 확인', icon: 'mdi-file-check-outline' },
+        ],
     }),
 }
 

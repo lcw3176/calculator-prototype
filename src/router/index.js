@@ -3,10 +3,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    alias: ['/home'],
-    name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
+    alias: ['/calculate'],
+    name: 'calculate',
+    component: () => import(/* webpackChunkName: "home" */ '../views/CalculateView.vue')
   },
+
+  {
+    path: '/recommend',
+    name: 'recommend',
+    component: () => import(/* webpackChunkName: "recommend" */ '../views/RecommendView.vue')
+  },
+
 
   {
     path: '/cart',

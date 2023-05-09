@@ -24,14 +24,14 @@ export default {
   data: () => ({
     nav:{
       diet: {
-        name: "홈",
-        path: "/home",
-        icon: "mdi-home",
+        name: "계산하기",
+        path: "/calculate",
+        icon: "mdi-calculator",
       },
 
       community: {
-        name: "커뮤니티",
-        path: "/community",
+        name: "메뉴 추천",
+        path: "/recommend",
         icon: "mdi-bulletin-board",
       },
 
@@ -42,11 +42,11 @@ export default {
         icon: "mdi-basket",
       },
 
-      setting: {
-        name: "설정",
-        path: "/setting",
-        icon: "mdi-menu",
-      }
+      // setting: {
+      //   name: "설정",
+      //   path: "/setting",
+      //   icon: "mdi-menu",
+      // }
     }
     
   }),
