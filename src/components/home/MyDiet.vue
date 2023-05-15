@@ -14,7 +14,7 @@
                     </v-card-subtitle>
                     <v-list>
 
-                        <v-list-item v-for="(item, i) in items" :key="i" :value="item" active-color="primary">
+                        <v-list-item v-for="(item, i) in items" :key="i" :value="item" active-color="primary" :to="item.route">
                             <template v-slot:prepend>
                                 <v-icon :icon="item.icon"></v-icon>
                             </template>
@@ -22,7 +22,6 @@
                             <v-list-item-title v-text="item.text"></v-list-item-title>
                         </v-list-item>
                     </v-list>
-
 
                 </v-card>
             </v-col>
@@ -36,8 +35,8 @@
 export default {
     data: () => ({
         items: [
-            { text: '식단 추가', icon: 'mdi-playlist-plus' },
-            { text: '목록 확인', icon: 'mdi-file-check-outline' },
+            { text: '식단 추가', icon: 'mdi-playlist-plus', route: '/calculate' },
+            { text: '목록 확인', icon: 'mdi-file-check-outline',  route: '/list' },
         ],
     }),
 }

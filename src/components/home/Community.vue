@@ -3,7 +3,7 @@
         <v-card class="mx-auto">
 
             <v-card-title class="text-h5">
-                추천 메뉴
+                유저 메뉴
             </v-card-title>
 
 

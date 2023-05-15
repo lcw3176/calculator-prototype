@@ -3,9 +3,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    alias: ['/home'],
+    name: 'home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/HomeView.vue')
+  },
+
+  {
+    path: '/',
     alias: ['/calculate'],
     name: 'calculate',
-    component: () => import(/* webpackChunkName: "home" */ '../views/CalculateView.vue')
+    component: () => import(/* webpackChunkName: "calculate" */ '../views/CalculateView.vue')
   },
 
   {

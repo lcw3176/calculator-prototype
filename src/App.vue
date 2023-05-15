@@ -23,11 +23,17 @@
 export default {
   data: () => ({
     nav:{
-      diet: {
-        name: "계산하기",
-        path: "/calculate",
-        icon: "mdi-calculator",
+      home: {
+        name: "홈",
+        path: "/home",
+        icon: "mdi-home",
       },
+
+      // diet: {
+      //   name: "계산하기",
+      //   path: "/calculate",
+      //   icon: "mdi-calculator",
+      // },
 
       community: {
         name: "메뉴 추천",
