@@ -9,8 +9,7 @@ const routes = [
   },
 
   {
-    path: '/',
-    alias: ['/calculate'],
+    path: '/calculate',
     name: 'calculate',
     component: () => import(/* webpackChunkName: "calculate" */ '../views/CalculateView.vue')
   },
