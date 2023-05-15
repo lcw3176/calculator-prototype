@@ -1,7 +1,10 @@
 <template>
   <v-container>
 
-    <v-app-bar dark :elevation="1">
+    <v-app-bar dark :elevation="0">
+
+
+
       <v-toolbar-title class="font-weight-black">밀거래</v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -29,15 +32,19 @@
                 <v-btn icon="mdi-minus" size="small" @click="dietStore.removeSelected(item)"></v-btn>
               </template>
 
-             
+
             </v-list-item>
-            
+
           </v-list>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
-            Close
+            닫기
+          </v-btn>
+
+          <v-btn color="red-darken-1" variant="text" @click="dialog = false">
+            다음 단계
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -45,24 +52,19 @@
 
 
     <v-row dense>
-      <v-col cols="10">
+      <v-col cols="12">
         <v-text-field label="재료 이름을 입력하세요" hide-details="auto" v-model="dietStore.keyword"
-          @keyup.enter="dietStore.searchFood()">
+          v-on:update:model-value="dietStore.searchFood()">
 
         </v-text-field>
 
       </v-col>
-
-      <v-col cols="2">
-        <v-btn type="submit" icon="mdi-magnify" @click="dietStore.searchFood()">
-        </v-btn>
-      </v-col>
     </v-row>
 
 
-    <v-card class="mx-auto">
+    <v-card class="mx-auto mt-5">
 
-      <v-list v-for="item in dietStore.items" lines="two" select-strategy="classic" @click="dietStore.addFood(item)"
+      <v-list v-for="item in dietStore.items" lines="two" select-strategy="classic" @click="dietStore.selectFood(item)"
         active-color="primary">
 
         <v-list-item :value="item.value">
@@ -75,20 +77,50 @@
 
       </v-list>
     </v-card>
+
+    <InfiniteLoading v-show="dietStore.getSearchResultLength >= 10" @infinite="dietStore.infiniteHandler" />
+
   </v-container>
 </template>
 
 <script>
+import InfiniteLoading from 'v3-infinite-loading';
 import { useDietStore } from '@/store/diet';
 
 export default {
   name: 'CalculateView',
 
+  components: {
+    InfiniteLoading,
+  },
+
   data() {
     return {
       dialog: false,
+      fav: true,
+      menu: false,
+      message: false,
+      hints: true,
+
+      items: [
+        {
+          title: 'Item #1',
+          value: 1,
+        },
+        {
+          title: 'Item #2',
+          value: 2,
+        },
+        {
+          title: 'Item #3',
+          value: 3,
+        },
+      ],
     }
   },
+
+
+
 
   setup() {
     const dietStore = useDietStore();

@@ -8,13 +8,20 @@ export const useDietStore = defineStore("dietStore", {
     keyword: '',
     items: [],
     selected: [],
+    loadCount: 0,
   }),
 
 
   getters: {
     getSelectedLength() {
       return this.selected.length;
-    }
+    },
+
+    getSearchResultLength() {
+      return this.items.length;
+    },
+
+
   },
 
   actions: {
@@ -22,30 +29,66 @@ export const useDietStore = defineStore("dietStore", {
     async searchFood() {
 
       this.items.length = 0;
-      for (let i = 0; i < this.food.length; i++) {
-        if (this.food[i].식품명.includes(this.keyword)) {
-          this.addData(this.food[i]);
+
+      if (this.keyword === '') {
+        return;
+      }
+
+      for (let item of this.food) {
+        if (item.name.startsWith(this.keyword)) {
+          this.addData(item);
+
+          if (this.items.length >= 10) {
+            this.loadCount++;
+            break;
+          }
         }
       }
     },
 
-    async addFood(selectedFood) {
-      if(this.selected.includes(selectedFood)){
+    async selectFood(selectedFood) {
+      if (this.selected.includes(selectedFood)) {
         return;
       }
-      
+
       this.selected.push(selectedFood);
     },
 
-    async removeSelected(selectedFood){
+    async removeSelected(selectedFood) {
       this.selected = this.selected.filter((element) => element !== selectedFood);
     },
 
-    async addData(data) {
+    async infiniteHandler($state) {
+      let no = this.items[this.items.length - 1].value;
+      let beforeSize = this.items.length;
+      
+      this.loadCount++;
+
+      for (let i = no; i < this.food.length; i++) {
+        if (this.food[i].name.startsWith(this.keyword)) {
+          this.addData(this.food[i]);
+
+          if (this.items.length >= this.loadCount * 10) {
+            break;
+          }
+        }
+      }
+
+      let nowSize = this.items.length;
+
+      if (beforeSize != nowSize) {
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+
+    },
+
+    addData(data) {
       this.items.push({
-        title: data.식품명,
-        subtitle: data.제공량 + 'g / ' + data.에너지 + 'kcal',
-        value: data.식품명,
+        title: data.name,
+        subtitle: data.size + 'g / ' + data.kcal + 'kcal',
+        value: data.no,
       });
     },
 

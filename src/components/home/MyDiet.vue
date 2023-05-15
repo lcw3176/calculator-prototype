@@ -1,9 +1,12 @@
 <template>
     <v-container fluid>
-
-
         <v-row dense>
             <v-col cols="12">
+                <v-app-bar dark :elevation="0">
+            <v-toolbar-title class="font-weight-black">밀거래</v-toolbar-title>
+
+        </v-app-bar>
+
                 <v-card>
                     <v-card-title class="text-h5">
                         내 식단
