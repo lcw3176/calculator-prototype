@@ -15,6 +15,13 @@ const routes = [
   },
 
   {
+    path: '/chart',
+    name: 'chart',
+    component: () => import(/* webpackChunkName: "chart" */ '../views/ChartView.vue')
+  },
+
+
+  {
     path: '/recommend',
     name: 'recommend',
     component: () => import(/* webpackChunkName: "recommend" */ '../views/RecommendView.vue')

@@ -24,7 +24,7 @@
           <v-list v-for="item in dietStore.selected" lines="two" active-color="primary">
             <v-list-item>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
-              <v-list-item-subtitle>
+              <v-list-item-subtitle class="pb-2">
                 {{ item.subtitle }}
               </v-list-item-subtitle>
 
@@ -43,7 +43,7 @@
             닫기
           </v-btn>
 
-          <v-btn color="red-darken-1" variant="text" @click="dialog = false">
+          <v-btn color="red-darken-1" variant="text" :to="'/chart'">
             다음 단계
           </v-btn>
         </v-card-actions>
@@ -69,7 +69,7 @@
 
         <v-list-item :value="item.value">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
-          <v-list-item-subtitle>
+          <v-list-item-subtitle class="pb-2">
             {{ item.subtitle }}
           </v-list-item-subtitle>
         </v-list-item>
