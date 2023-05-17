@@ -3,7 +3,9 @@
 
     <v-app-bar dark :elevation="0">
 
-
+      <v-btn icon :to="'/home'">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
 
       <v-toolbar-title class="font-weight-black">밀거래</v-toolbar-title>
 
@@ -67,7 +69,7 @@
       <v-list v-for="item in dietStore.items" lines="two" select-strategy="classic" @click="dietStore.selectFood(item)"
         active-color="primary">
 
-        <v-list-item :value="item.value">
+        <v-list-item :value="item.no">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
           <v-list-item-subtitle class="pb-2">
             {{ item.subtitle }}
@@ -97,25 +99,6 @@ export default {
   data() {
     return {
       dialog: false,
-      fav: true,
-      menu: false,
-      message: false,
-      hints: true,
-
-      items: [
-        {
-          title: 'Item #1',
-          value: 1,
-        },
-        {
-          title: 'Item #2',
-          value: 2,
-        },
-        {
-          title: 'Item #3',
-          value: 3,
-        },
-      ],
     }
   },
 

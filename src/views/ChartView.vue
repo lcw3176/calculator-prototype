@@ -1,6 +1,11 @@
 <template>
   <v-app-bar dark :elevation="0">
 
+    <v-btn icon :to="'/calculate'">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+
+
     <v-toolbar-title class="font-weight-black">밀거래</v-toolbar-title>
     <v-spacer></v-spacer>
 

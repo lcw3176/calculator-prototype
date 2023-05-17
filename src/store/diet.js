@@ -1,16 +1,13 @@
 import { defineStore } from "pinia"
 import food from "@/assets/food.json";
-import ingredient from "@/assets/ingredient.json";
 
 export const useDietStore = defineStore("dietStore", {
 
   state: () => ({
     food: food,
-    ingredient: ingredient,
     keyword: '',
     items: [],
     selected: [],
-    loadCount: 0,
     chart: '',
   }),
 
@@ -30,7 +27,7 @@ export const useDietStore = defineStore("dietStore", {
   actions: {
 
     async searchFood() {
-
+      this.keyword = this.keyword.trim();
       this.items.length = 0;
 
       if (this.keyword === '') {
@@ -38,16 +35,58 @@ export const useDietStore = defineStore("dietStore", {
       }
 
       for (let item of this.food) {
-        if(!this.addData(item)){
+        if(item.kcal === ''){
+          continue;
+        }
+  
+        if (item.name.includes(this.keyword)) {
+          this.items.push({
+            title: item.name,
+            subtitle: item.size + 'g / ' + item.kcal + 'kcal',
+            kcal: item.kcal,
+            no: item.no,
+            quantity: 1,
+          });
+        }
+  
+        if (this.items.length >= 10) {
           break;
         }
       }
 
-      for (let item of this.ingredient) {
-        if(!this.addData(item)){
+    },
+
+
+    async searchNextFood() {
+
+      if (this.keyword === '') {
+        return;
+      }
+
+      let beforeSize = this.items.length;
+
+      for (let i = this.items[beforeSize - 1].no + 1; i < this.food.length; i++) {
+        let item = this.food[i];
+
+        if(item.kcal === ''){
+          continue;
+        }
+  
+        if (item.name.includes(this.keyword)) {
+          this.items.push({
+            title: item.name,
+            subtitle: item.size + 'g / ' + item.kcal + 'kcal',
+            kcal: item.kcal,
+            no: item.no,
+            quantity: 1,
+          });
+        }
+  
+        if (this.items.length >= beforeSize + 10) {
           break;
         }
       }
+
     },
 
     async selectFood(selectedFood) {
@@ -63,57 +102,21 @@ export const useDietStore = defineStore("dietStore", {
     },
 
     async infiniteHandler($state) {
-      let no = this.items[this.items.length - 1].value;
       let beforeSize = this.items.length;
-      
-      this.loadCount++;
-
-      for (let i = no; i < this.food.length; i++) {
-        if (this.food[i].name.startsWith(this.keyword)) {
-          this.addData(this.food[i]);
-
-          if (this.items.length >= this.loadCount * 10) {
-            break;
-          }
-        }
-      }
+  
+      await this.searchNextFood();
 
       let nowSize = this.items.length;
-
+      
       if (beforeSize != nowSize) {
         $state.loaded();
-      } else {
-        $state.complete();
-      }
-
+      } 
     },
 
-    addData(data) {
-      if(data.kcal === ''){
-        return;
-      }
-
-      if (data.name.startsWith(this.keyword)) {
-        this.items.push({
-          title: data.name,
-          subtitle: data.size + 'g / ' + data.kcal + 'kcal',
-          kcal: data.kcal,
-          value: data.no,
-          quantity: 1,
-        });
-      }
-
-      if (this.items.length >= 10) {
-        this.loadCount++;
-        return false;
-      }
-
-      return true;
-    },
 
     async refreshChart() {
       const labels = [];
-      const backgroundColor = ['#41B883', '#E46651', '#00D8FF', '#DD1B16'];
+      const backgroundColor = ['#643843', '#99627A', '#C88EA7', '#E7CBCB', '#4C4C6D', '#1B9C85', '#E8F6EF', '#FFE194'];
       const colors = [];
       const value = [];
 
