@@ -12,9 +12,12 @@
       <v-spacer></v-spacer>
 
       <v-btn icon @click="this.dialog = true">
+        
         <v-badge :content="dietStore.getSelectedLength" color="info">
-          <v-icon icon="mdi-cart" size="x-large"></v-icon>
+          <v-icon v-if="dietStore.getSelectedLength == 0" icon="mdi-cart" size="x-large"></v-icon>
+          <v-icon v-else icon="mdi-cart" color="warning" size="x-large"></v-icon>
         </v-badge>
+        
       </v-btn>
     </v-app-bar>
 
@@ -23,12 +26,9 @@
         <v-card-title>재료 목록</v-card-title>
         <v-divider></v-divider>
         <v-card-text style="height: 300px;">
-          <v-list v-for="item in dietStore.selected" lines="two" active-color="primary">
+          <v-list v-for="item in dietStore.selected" active-color="primary">
             <v-list-item>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
-              <v-list-item-subtitle class="pb-2">
-                {{ item.subtitle }}
-              </v-list-item-subtitle>
 
               <template v-slot:append>
                 <v-btn icon="mdi-minus" size="small" @click="dietStore.removeSelected(item)"></v-btn>
@@ -66,19 +66,34 @@
 
     <v-card class="mx-auto mt-5">
 
-      <v-list v-for="item in dietStore.items" lines="two" select-strategy="classic" @click="dietStore.selectFood(item)"
+      <v-list v-for="item in dietStore.items" select-strategy="classic" @click="dietStore.selectFood(item); this.snackbar = true;"
         active-color="primary">
 
         <v-list-item :value="item.no">
           <v-list-item-title>{{ item.title }}</v-list-item-title>
-          <v-list-item-subtitle class="pb-2">
-            {{ item.subtitle }}
-          </v-list-item-subtitle>
         </v-list-item>
 
 
       </v-list>
+
+      
+    <v-snackbar
+      v-model="snackbar"
+    >
+      {{ text }}
+
+      <template v-slot:actions>
+        <v-btn
+          color="pink"
+          variant="text"
+          @click="snackbar = false"
+        >
+          닫기
+        </v-btn>
+      </template>
+    </v-snackbar>
     </v-card>
+
 
     <InfiniteLoading v-show="dietStore.getSearchResultLength >= 10" @infinite="dietStore.infiniteHandler" />
 
@@ -99,6 +114,8 @@ export default {
   data() {
     return {
       dialog: false,
+      snackbar: false,
+      text: `다음 단계로 가려면 카트를 눌러 주세요`,
     }
   },
 

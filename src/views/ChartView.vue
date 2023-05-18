@@ -5,7 +5,6 @@
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
 
-
     <v-toolbar-title class="font-weight-black">밀거래</v-toolbar-title>
     <v-spacer></v-spacer>
 
@@ -25,11 +24,8 @@
 
             </v-list-item-title>
 
-            <v-list-item-subtitle class="pb-2">
-              {{ item.subtitle }}
 
-            </v-list-item-subtitle>
-
+            <!-- <v-text-field label="용량을 입력해 주세요"></v-text-field> -->
             <template v-slot:prepend>
 
               <v-btn icon="mdi-plus" class="mr-5" size="small" @click="dietStore.addCount(item)"></v-btn>
@@ -45,6 +41,7 @@
 
           </v-list-item>
 
+
         </v-list>
       </v-card-text>
     </v-card>
@@ -52,9 +49,9 @@
 
   <v-container>
     <v-card>
-      <v-card-subtitle>
+      <v-card-title>
         칼로리 분석 결과
-      </v-card-subtitle>
+      </v-card-title>
 
       <v-card-item>
         <Pie :data="dietStore.chart" :options="options" />

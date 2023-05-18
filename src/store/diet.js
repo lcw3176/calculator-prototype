@@ -42,7 +42,7 @@ export const useDietStore = defineStore("dietStore", {
         if (item.name.includes(this.keyword)) {
           this.items.push({
             title: item.name,
-            subtitle: item.size + 'g / ' + item.kcal + 'kcal',
+            size: item.size,
             kcal: item.kcal,
             no: item.no,
             quantity: 1,
@@ -75,7 +75,7 @@ export const useDietStore = defineStore("dietStore", {
         if (item.name.includes(this.keyword)) {
           this.items.push({
             title: item.name,
-            subtitle: item.size + 'g / ' + item.kcal + 'kcal',
+            size: item.size,
             kcal: item.kcal,
             no: item.no,
             quantity: 1,
