@@ -45,12 +45,16 @@ const router = createRouter({
 })
 
 
-router.beforeEach((to, from, next) => {
-  NProgress.start()
-  next()
+router.beforeResolve((to, from, next) => {
+  if (to.name) {
+      NProgress.start();
+  }
+  next();
 })
+
+
 router.afterEach(() => {
-  NProgress.done()
+  NProgress.done();
 })
 
 export default router
