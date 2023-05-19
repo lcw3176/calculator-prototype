@@ -1,6 +1,11 @@
 <template>
-  <MyDiet/>
-  <Community/>
+  <v-overlay v-model="onPreparing" class="align-center justify-center">
+
+    <v-progress-circular :size="70" color="purple" indeterminate></v-progress-circular>
+  </v-overlay>
+
+  <MyDiet />
+  <Community />
 </template>
 
 <script>
@@ -10,11 +15,17 @@ import { useDietStore } from '@/store/diet';
 
 export default {
   name: 'HomeView',
-  components :{
+  components: {
     MyDiet,
     Community
   },
-  
+
+  data() {
+    return {
+      onPreparing: true,
+    }
+  },
+
   setup() {
     const dietStore = useDietStore();
 
@@ -22,6 +33,10 @@ export default {
       dietStore
     }
   },
+
+  mounted() {
+    this.onPreparing = false;
+  }
 
 }
 </script>
