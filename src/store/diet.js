@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import food from "@/assets/food.json";
+import food from "../../public/food.json";
 
 export const useDietStore = defineStore("dietStore", {
 
