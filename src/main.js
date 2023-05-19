@@ -13,6 +13,7 @@ import * as directives from 'vuetify/directives'
 
 // Nprogress
 import NProgress from 'nprogress'
+import '../node_modules/nprogress/nprogress.css' 
 
 const vuetify = createVuetify({
   components,
