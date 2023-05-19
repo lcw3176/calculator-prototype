@@ -3,7 +3,7 @@
 
     <v-app-bar dark :elevation="0">
 
-      <v-btn icon :to="'/home'">
+      <v-btn icon :to="'/'">
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
 
