@@ -25,7 +25,7 @@ export default {
     nav:{
       home: {
         name: "홈",
-        path: "/home",
+        path: "/",
         icon: "mdi-home",
       },
 
