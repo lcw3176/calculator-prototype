@@ -25,7 +25,7 @@ export const useDietStore = defineStore("dietStore", {
       let temp = 0;
 
       for(let i = 0;i < this.selected.length; i++){
-        temp += parseInt(this.selected[i].kcal);
+        temp += parseInt(this.selected[i].kcal) * parseInt(this.selected[i].quantity);
       }
 
       return temp;
