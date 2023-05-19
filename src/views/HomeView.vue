@@ -20,23 +20,31 @@ export default {
     Community
   },
 
-  data() {
-    return {
-      onPreparing: true,
-    }
-  },
 
   setup() {
     const dietStore = useDietStore();
+    
+
 
     return {
       dietStore
     }
   },
 
-  mounted() {
-    this.onPreparing = false;
+  mounted(){
+    let onPreparing = true;
+
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        this.onPreparing = false;
+      }
+    }
+
+    return {
+      onPreparing
+    }
   }
+
 
 }
 </script>
