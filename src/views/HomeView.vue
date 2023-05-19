@@ -1,9 +1,4 @@
 <template>
-  <v-overlay v-model="onPreparing" class="align-center justify-center">
-
-    <v-progress-circular :size="70" color="purple" indeterminate></v-progress-circular>
-  </v-overlay>
-
   <MyDiet />
   <Community />
 </template>
@@ -20,31 +15,13 @@ export default {
     Community
   },
 
-
   setup() {
     const dietStore = useDietStore();
-    
-
 
     return {
-      dietStore
+      dietStore,
     }
   },
-
-  mounted(){
-    let onPreparing = true;
-
-    document.onreadystatechange = () => {
-      if (document.readyState == "complete") {
-        this.onPreparing = false;
-      }
-    }
-
-    return {
-      onPreparing
-    }
-  }
-
 
 }
 </script>

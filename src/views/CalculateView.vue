@@ -45,7 +45,8 @@
             닫기
           </v-btn>
 
-          <v-btn color="red-darken-1" variant="text" :to="'/chart'">
+          <v-spacer></v-spacer>
+          <v-btn color="success" variant="text" :to="'/chart'">
             다음 단계
           </v-btn>
         </v-card-actions>
@@ -84,11 +85,11 @@
 
       <template v-slot:actions>
         <v-btn
-          color="pink"
+          color="success"
           variant="text"
-          @click="snackbar = false"
+          @click="this.dialog = true"
         >
-          닫기
+          이동
         </v-btn>
       </template>
     </v-snackbar>

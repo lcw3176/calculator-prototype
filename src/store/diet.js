@@ -21,7 +21,15 @@ export const useDietStore = defineStore("dietStore", {
       return this.items.length;
     },
 
+    getTotalSelectedKcal() {
+      let temp = 0;
 
+      for(let i = 0;i < this.selected.length; i++){
+        temp += parseInt(this.selected[i].kcal);
+      }
+
+      return temp;
+    },
   },
 
   actions: {
@@ -133,7 +141,7 @@ export const useDietStore = defineStore("dietStore", {
         labels: labels,
         datasets: [
           {
-            label: "칼로리",
+            label: "kcal",
             backgroundColor: colors,
             data: value
           }

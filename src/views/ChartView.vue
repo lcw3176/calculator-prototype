@@ -50,8 +50,12 @@
   <v-container>
     <v-card>
       <v-card-title>
-        칼로리 분석 결과
+        총 칼로리
       </v-card-title>
+
+      <v-card-subtitle>
+        {{dietStore.getTotalSelectedKcal + " kcal"}}
+      </v-card-subtitle>
 
       <v-card-item>
         <Pie :data="dietStore.chart" :options="options" />
