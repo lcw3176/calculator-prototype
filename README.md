@@ -1,24 +1,5 @@
-# calculator-prototype
+# 밀거래
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 소개
+- 식사(meal)를 거래(deal)하다
+- 식자재 거래 서비스 
