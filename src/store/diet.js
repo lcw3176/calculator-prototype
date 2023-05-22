@@ -137,7 +137,7 @@ export const useDietStore = defineStore("dietStore", {
 
         labels.push(item.title);
         colors.push(backgroundColor[i % backgroundColor.length]);
-        value.push((item.kcal / item.size) * item.quantity);
+        value.push(Math.round((item.kcal / item.size) * item.quantity));
       }
 
       this.kcalChart = {
@@ -168,9 +168,9 @@ export const useDietStore = defineStore("dietStore", {
       for (let i = 0; i < this.selected.length; i++) {
         let item = this.selected[i];
         
-        nuValue[0] += item.protein === undefined ? 0 : parseFloat(item.protein);
-        nuValue[1] += item.carbs === undefined ? 0 : parseFloat(item.carbs);
-        nuValue[2] += item.fat === undefined ? 0 : parseFloat(item.fat);
+        nuValue[0] += item.protein === undefined ? 0 : Math.round(item.protein / item.size * item.quantity);
+        nuValue[1] += item.carbs === undefined ? 0 : Math.round(item.carbs / item.size * item.quantity);
+        nuValue[2] += item.fat === undefined ? 0 : Math.round(item.fat / item.size * item.quantity);
       }
 
       this.nutrientChart = {
@@ -183,8 +183,6 @@ export const useDietStore = defineStore("dietStore", {
           }
         ]
       }
-
-      console.log(nuValue);
       
     },
   }
