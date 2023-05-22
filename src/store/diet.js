@@ -8,7 +8,8 @@ export const useDietStore = defineStore("dietStore", {
     keyword: '',
     items: [],
     selected: [],
-    chart: '',
+    kcalChart: '',
+    nutrientChart: '',
   }),
 
 
@@ -25,7 +26,7 @@ export const useDietStore = defineStore("dietStore", {
       let temp = 0;
 
       for(let i = 0;i < this.selected.length; i++){
-        temp += parseInt(this.selected[i].kcal) * parseInt(this.selected[i].quantity);
+        temp += parseInt((this.selected[i].kcal /  this.selected[i].size) * parseInt(this.selected[i].quantity));
       }
 
       return temp;
@@ -54,6 +55,9 @@ export const useDietStore = defineStore("dietStore", {
             kcal: item.kcal,
             no: item.no,
             quantity: 1,
+            protein: item.protein,
+            fat: item.fat,
+            carbs: item.carbs,
           });
         }
   
@@ -133,10 +137,10 @@ export const useDietStore = defineStore("dietStore", {
 
         labels.push(item.title);
         colors.push(backgroundColor[i % backgroundColor.length]);
-        value.push(item.kcal * item.quantity);
+        value.push((item.kcal / item.size) * item.quantity);
       }
 
-      this.chart = {
+      this.kcalChart = {
 
         labels: labels,
         datasets: [
@@ -147,33 +151,41 @@ export const useDietStore = defineStore("dietStore", {
           }
         ]
       };
+
+      const nuLabels = [];
+      const nuColors = [];
+      const nuValue = [0, 0, 0];
+
+      nuLabels.push("단백질");
+      nuLabels.push("탄수화물");  
+      nuLabels.push("지방");
+
+      nuColors.push(backgroundColor[4 % backgroundColor.length]);
+      nuColors.push(backgroundColor[5 % backgroundColor.length]);
+      nuColors.push(backgroundColor[6 % backgroundColor.length]);
+
+
+      for (let i = 0; i < this.selected.length; i++) {
+        let item = this.selected[i];
+        
+        nuValue[0] += item.protein === undefined ? 0 : parseFloat(item.protein);
+        nuValue[1] += item.carbs === undefined ? 0 : parseFloat(item.carbs);
+        nuValue[2] += item.fat === undefined ? 0 : parseFloat(item.fat);
+      }
+
+      this.nutrientChart = {
+        labels: nuLabels,
+        datasets: [
+          {
+            label: "g",
+            backgroundColor: nuColors,
+            data: nuValue
+          }
+        ]
+      }
+
+      console.log(nuValue);
       
     },
-
-    async addCount(item){
-
-      for(let i = 0; i < this.selected.length; i++){
-
-        if(this.selected[i] === item){
-          this.selected[i].quantity++;
-          break;
-        }
-      }
-
-      this.refreshChart();
-    },
-
-    async minusCount(item){
-      for(let i = 0; i < this.selected.length; i++){
-
-        if(this.selected[i] === item){
-          this.selected[i].quantity--;
-          break;
-        }
-      }
-
-      this.refreshChart();
-    }
-
   }
 });
