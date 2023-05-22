@@ -48,7 +48,7 @@ export const useDietStore = defineStore("dietStore", {
           continue;
         }
   
-        if (item.name.includes(this.keyword)) {
+        if (item.name.startsWith(this.keyword)) {
           this.items.push({
             title: item.name,
             size: item.size,
@@ -84,7 +84,7 @@ export const useDietStore = defineStore("dietStore", {
           continue;
         }
   
-        if (item.name.includes(this.keyword)) {
+        if (item.name.startsWith(this.keyword)) {
           this.items.push({
             title: item.name,
             size: item.size,
